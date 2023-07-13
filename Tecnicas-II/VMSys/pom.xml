@@ -1,0 +1,154 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelversion>4.0.0</modelversion>
+  <groupid>br.ufc.tpii.vmsys</groupid>
+  <artifactid>VMSys</artifactid>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+  <name>VMSys</name>
+
+  <properties>
+    <maven.compiler.source>1.9</maven.compiler.source>
+    <maven.compiler.target>1.9</maven.compiler.target>
+  </properties>
+
+  <dependencies>
+	 <dependency>
+	   <groupId>org.junit.jupiter</groupId>
+		 <artifactId>junit-jupiter-engine</artifactId>
+		 <version>5.9.2</version>
+		 <scope>test</scope>
+	 </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.9</version>
+        <configuration>
+          <rules>
+            <rule>
+              <element>METHOD</element>
+                <limits>
+                  <limit>
+                    <counter>LINE</counter>
+                    <value>COVEREDRATIO</value>
+                    <minimum>0.70</minimum>
+                  </limit>
+
+                  <limit>
+                    <counter>BRANCH</counter>
+                    <value>MISSEDRATIO</value>
+                    <maximum>0.30</maximum>
+                  <limit>
+                </limits>
+              </element>
+            </rule>
+            
+            <rule>
+              <element>CLASS</element>
+                <limits>
+                  <limit>
+                    <counter>LINE</counter>
+                    <value>COVEREDRATIO</value>
+                    <minimum>0.70</minimum>
+                  </limit>
+
+                  <limit>
+                    <counter>BRANCH</counter>
+                    <value>MISSEDRATIO</value>
+                    <maximum>0.30</maximum>
+                  <limit>
+                </limits>
+              </element>
+            </rule>
+
+            <rule>
+              <element>PACKAGE</element>
+                <limits>
+                  <limit>
+                    <counter>LINE</counter>
+                    <value>COVEREDRATIO</value>
+                    <minimum>0.70</minimum>
+                  </limit>
+
+                  <limit>
+                    <counter>BRANCH</counter>
+                    <value>MISSEDRATIO</value>
+                    <maximum>0.30</maximum>
+                  <limit>
+                </limits>
+              </element>
+            </rule>
+
+            <rule>
+              <element>SOURCEFILE</element>
+                <limits>
+                  <limit>
+                    <counter>LINE</counter>
+                    <value>COVEREDRATIO</value>
+                    <minimum>0.70</minimum>
+                  </limit>
+
+                  <limit>
+                    <counter>BRANCH</counter>
+                    <value>MISSEDRATIO</value>
+                    <maximum>0.30</maximum>
+                  <limit>
+                </limits>
+              </element>
+            </rule>
+          </rules>
+        </configuration>
+
+        <executions>
+          <execution>
+            <id>jacoco-initialize</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+
+          <execution>
+            <id>jacoco-site</id>
+            <phase>package</phase>
+            <goal>
+              <goal>prepare-agent</goal>
+            </goal>
+          </execution>
+
+          <execution>
+            <id>coverage-check</id>
+            <phase>test</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupid>org.pitest</groupid>
+        <artifactid>pitest-maven</artifactid>
+        <dependencies>
+          <dependency>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-junit5-plugin</artifactId>
+            <version>1.1.2</version>
+          </dependency>
+        </dependencies>
+        <executions>
+          <execution>
+            <id>pit-report</id>
+            <phase>test</phase>
+            <goals>
+              <goal>mutationCoverage</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
